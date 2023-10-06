@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>index-4</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your keywords">
+    <meta name="author" content="Your name">
+ 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/preview.css" type="text/css">
+	<script type="text/javascript" src="js/include_script.js"></script>
+  	<!--[if lt IE 9]>
+	   	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <link href="css/ie.css" rel="stylesheet" type="text/css">
+    <![endif]-->
+</head>
+<body>
+<!--content wrapper-->
+	<div id="wrapper">
+		<section>
+			<div class="dynamicContent">
+				<div class="cont_bg"></div>
+				<div class="inner">
+					<div class="container">
+						<div class="row">
+							<div class="span12">
+								<div class="cont_info pad_4">
+									<h2 class="marg_4">Our Projects</h2>
+									<ul class="list_3">
+										<li>
+					                        <div class="thumbnail">
+					                            <figure ><a href="img/page4_big1.jpg"><img src="img/page4_pic1.jpg" alt=""></a></figure>
+					                            <div class="caption">
+					                                <p>
+					                                    <a href="#" class="link_1 animate">amet interdum commodo Aenean. </a><br>
+					                                    Nam commodo lectus ut neque commodo, vel euismod velit gravida. Fusce fauc.
+					                                </p>
+					                            </div>
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <div class="thumbnail">
+					                            <figure ><a href="img/page4_big2.jpg"><img src="img/page4_pic2.jpg" alt=""></a></figure>
+					                            <div class="caption">
+					                                <p>
+					                                    <a href="#" class="link_1 animate">Fusce faucibus malesuada enim. </a><br>
+					                                    Nam commodo lectus ut neque commodo, vel euismod velit gravida. Fusce fauc.
+					                                </p>
+					                            </div>
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <div class="thumbnail">
+					                            <figure ><a href="img/page4_big3.jpg"><img src="img/page4_pic3.jpg" alt=""></a></figure>
+					                            <div class="caption">
+					                                <p>
+					                                    <a href="#" class="link_1 animate">malesuada enim; ac venenatis. </a><br>
+					                                    Nam commodo lectus ut neque commodo, vel euismod velit gravida. Fusce fauc.
+					                                </p>
+					                            </div>
+					                        </div>
+					                    </li>
+					                    <li class="last">
+					                        <div class="thumbnail">
+					                            <figure ><a href="img/page4_big4.jpg"><img src="img/page4_pic4.jpg" alt=""></a></figure>
+					                            <div class="caption">
+					                                <p>
+					                                    <a href="#" class="link_1 animate">uada enim ac venenatis Fusce faucibus.</a><br>
+					                                    Nam commodo lectus ut neque commodo, vel euismod velit gravida. Fusce fauc.
+					                                </p>
+					                            </div>
+					                        </div>
+					                    </li>
+									</ul>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script>
+		var MSIE = ($.browser.msie) && ($.browser.version <= 8);
+
+		$('.list_3 figure > a').attr('rel','appendix')
+	    .prepend('<span class="sitem_over"><strong></strong></span>')
+	    $('.list_3 figure > a').fancybox({
+	        'transitionIn': 'elastic',
+	    	'transitionOut': 'elastic',
+	    	'speedIn': 500,
+	    	'speedOut': 300,
+	        'centerOnScroll': true,
+	        'overlayColor': '#000'
+	    });
+		
+		$('.list_3 figure > a')
+	    .find('strong').css('top','200px').end()
+	    .hover(
+	        function(){
+	            if (!MSIE){
+	                $(this).children('.sitem_over').css({display:'block',opacity:'0'}).stop().animate({'opacity':1}).end() 
+	                .find('strong').css({'opacity':0}).stop().animate({'opacity':1,'top':'0'},350,'easeInOutExpo');
+	            } else { 
+	                $(this).children('.sitem_over').stop().show().end()
+	                .find('strong').stop().show().css({'top':'0'});
+	            }
+	        },
+	        function(){
+	            if (!MSIE){
+	                $(this).children('.sitem_over').stop().animate({'opacity':0},1000,'easeOutQuad',function(){$(this).children('.sitem_over').css({display:'none'})}).end()  
+	                .find('strong').stop().animate({'opacity':0,'top':'200px'},1000,'easeOutQuad');  
+	            } else {
+	                $(this).children('.sitem_over').stop().hide().end()
+	                .find('strong').stop().hide();
+	            }            
+	        }
+	    );
+
+	</script>
+</body>
+</html>
