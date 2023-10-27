@@ -45,37 +45,93 @@
 			</div>
 		</header>
 		<section>
-			<div class="dynamicContent">
-				<div class="cont_bg"></div>
-				<div class="inner">
+			 <div class="dynamicContent">
+				<div class="row" style="justify-content: center;text-align: center;">
+					<div><form id="servicioForm" style="">
+						<label for="nombreCliente">Nombres y Apellidos del cliente:</label>
+						<input type="text" id="nombreCliente" required><br>
+					  
+						<label for="correoCliente">Correo Electrónico:</label>
+						<input type="email" id="correoCliente" required><br>
+					  
+						<label for="numeroCelular">Número de celular:</label>
+						<input type="tel" id="numeroCelular" pattern="[0-9]+" required><br>
+					  
+						<label for="servicio">Servicio que solicita:</label>
+						<select id="servicio" required>
+						  <option value="Personalización">Personalización</option>
+						  <option value="Pedido Mayorista">Pedido Mayorista</option>
+						  <option value="Devolución">Devolución</option>
+						</select><br>
+					  
+						<input type="submit" value="Enviar datos">
+						<button type="button" id="cancelar">Cancelar</button>
+					  </form>
+					</div>
+				</div>	
+				<div id="servicioResultado">
+					<!-- Aquí se mostrará el cuento generado -->
+				  </div>			
+				</div>
+					
+				<!-- <div class="cont_bg"></div> -->
+				<!-- <div class="inner">
 					<div class="container">
 						<div class="row" style="justify-content: center;text-align: center;">
-							<form id="servicioForm" style="display: none;">
-								<label for="nombreCliente">Nombres y Apellidos del cliente:</label>
-								<input type="text" id="nombreCliente" required><br>
-							  
-								<label for="correoCliente">Correo Electrónico:</label>
-								<input type="email" id="correoCliente" required><br>
-							  
-								<label for="numeroCelular">Número de celular:</label>
-								<input type="tel" id="numeroCelular" pattern="[0-9]+" required><br>
-							  
-								<label for="servicio">Servicio que solicita:</label>
-								<select id="servicio" required>
-								  <option value="Personalización">Personalización</option>
-								  <option value="Pedido Mayorista">Pedido Mayorista</option>
-								  <option value="Devolución">Devolución</option>
-								</select><br>
-							  
-								<input type="submit" value="Enviar datos">
-								<button type="button" id="cancelar">Cancelar</button>
-							  </form>
+							<h2 class="marg_4">SITIO EN CONSTRUCCIÓN</h2>
+									<p><span class="color_1">Temporalmente fuera de servicio.</span></p>
+									
 						</div>						
 					</div>
-				</div>
-			</div>
+				</div> -->
+			</div> 
 		</section>
 	</div>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script>
+		//// Agregar un evento click al botón "Cancelar" del formulario de servicio
+const cancelarButton = document.getElementById('cancelar');
+
+cancelarButton.addEventListener('click', function () {
+  cuentoForm.style.display = 'block';
+  servicioForm.style.display = 'none';
+});
+
+// Agregar un evento submit al formulario de servicio
+const servicioResultado = document.getElementById('servicioResultado');
+const servicioFormElement = document.getElementById('servicioForm');
+
+servicioFormElement.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const nombreCliente = document.getElementById('nombreCliente').value;
+  const correoCliente = document.getElementById('correoCliente').value;
+  const numeroCelular = document.getElementById('numeroCelular').value;
+  const servicio = document.getElementById('servicio').value;
+
+  const servicioInfo = `
+  <table class="table">
+    <tbody>
+      <tr>
+        <td scope="row">Nombres y Apellidos</td>
+		<td scope="row">Correo Electrónico</td>
+		<td scope="row">Número de celular</td>
+		<td scope="row">Servicio solicitado</td>
+      </tr>
+	  <tr>
+		<td>${nombreCliente}</td>
+		<td>${correoCliente}</td>
+		<td>${numeroCelular}</td>
+		<td>${servicio}</td>
+		</tr>
+    </tbody>
+  </table>
+  `;
+
+  servicioResultado.innerHTML = servicioInfo;
+
+  servicioForm.style.display = 'none';
+});
+	</script>
 </body>
 </html>
