@@ -120,4 +120,51 @@ $(window).load(function(){
          nextBtn:$('.sliderNext')
      });
 	
-	});
+});
+	
+//// Agregar un evento click al botón "Cancelar" del formulario de servicio
+const cancelarButton = document.getElementById('cancelar');
+
+cancelarButton.addEventListener('click', function () {
+  cuentoForm.style.display = 'block';
+  servicioForm.style.display = 'none';
+});
+
+// Agregar un evento submit al formulario de servicio
+const servicioResultado = document.getElementById('servicioResultado');
+const servicioFormElement = document.getElementById('servicioForm');
+
+servicioFormElement.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const nombreCliente = document.getElementById('nombreCliente').value;
+  const correoCliente = document.getElementById('correoCliente').value;
+  const numeroCelular = document.getElementById('numeroCelular').value;
+  const servicio = document.getElementById('servicio').value;
+
+  const servicioInfo = `
+    <table>
+      <tr>
+        <th>Nombres y Apellidos del cliente:</th>
+        <td>${nombreCliente}</td>
+      </tr>
+      <tr>
+        <th>Correo Electrónico:</th>
+        <td>${correoCliente}</td>
+      </tr>
+      <tr>
+        <th>Número de celular:</th>
+        <td>${numeroCelular}</td>
+      </tr>
+      <tr>
+        <th>Servicio solicitado:</th>
+        <td>${servicio}</td>
+      </tr>
+    </table>
+  `;
+
+  servicioResultado.innerHTML = servicioInfo;
+
+  cuentoForm.style.display = 'block';
+  servicioForm.style.display = 'none';
+});

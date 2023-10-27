@@ -50,8 +50,26 @@
 				<div class="inner">
 					<div class="container">
 						<div class="row" style="justify-content: center;text-align: center;">
-							<h2 class="marg_4">SITIO EN CONSTRUCCIÓN</h2>
-									<p><span class="color_1">Temporalmente fuera de servicio.</span></p>
+							<form id="servicioForm" style="display: none;">
+								<label for="nombreCliente">Nombres y Apellidos del cliente:</label>
+								<input type="text" id="nombreCliente" required><br>
+							  
+								<label for="correoCliente">Correo Electrónico:</label>
+								<input type="email" id="correoCliente" required><br>
+							  
+								<label for="numeroCelular">Número de celular:</label>
+								<input type="tel" id="numeroCelular" pattern="[0-9]+" required><br>
+							  
+								<label for="servicio">Servicio que solicita:</label>
+								<select id="servicio" required>
+								  <option value="Personalización">Personalización</option>
+								  <option value="Pedido Mayorista">Pedido Mayorista</option>
+								  <option value="Devolución">Devolución</option>
+								</select><br>
+							  
+								<input type="submit" value="Enviar datos">
+								<button type="button" id="cancelar">Cancelar</button>
+							  </form>
 						</div>						
 					</div>
 				</div>
