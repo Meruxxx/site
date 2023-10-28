@@ -47,7 +47,7 @@
 		<section>
 			 <div class="dynamicContent">
 				<div class="row" style="justify-content: center;text-align: center;">
-					<div><form id="servicioForm" style="">
+					<div><form id="servicioForm">
 						<label for="nombreCliente">Nombres y Apellidos del cliente:</label>
 						<input type="text" id="nombreCliente" required><br>
 					  
@@ -65,13 +65,13 @@
 						</select><br>
 					  
 						<input type="submit" value="Enviar datos">
-						<button type="button" id="cancelar">Cancelar</button>
 					  </form>
 					</div>
 				</div>	
 				<div id="servicioResultado">
 					<!-- Aquí se mostrará el cuento generado -->
-				  </div>			
+				  </div>
+				  <button type="button" id="cancelar" style="display:none">Cancelar</button>			
 				</div>
 					
 				<!-- <div class="cont_bg"></div> -->
@@ -93,8 +93,9 @@
 const cancelarButton = document.getElementById('cancelar');
 
 cancelarButton.addEventListener('click', function () {
-  cuentoForm.style.display = 'block';
-  servicioForm.style.display = 'none';
+	servicioResultado.style.display = 'none';
+	cancelarButton.style.display='none';
+	servicioForm.style.display = '';
 });
 
 // Agregar un evento submit al formulario de servicio
@@ -103,14 +104,14 @@ const servicioFormElement = document.getElementById('servicioForm');
 
 servicioFormElement.addEventListener('submit', function (event) {
   event.preventDefault();
-
+  servicioResultado.style.display = '';
   const nombreCliente = document.getElementById('nombreCliente').value;
   const correoCliente = document.getElementById('correoCliente').value;
   const numeroCelular = document.getElementById('numeroCelular').value;
   const servicio = document.getElementById('servicio').value;
 
   const servicioInfo = `
-  <table class="table">
+  <table class="custom-table">
     <tbody>
       <tr>
         <td scope="row">Nombres y Apellidos</td>
@@ -129,7 +130,7 @@ servicioFormElement.addEventListener('submit', function (event) {
   `;
 
   servicioResultado.innerHTML = servicioInfo;
-
+  cancelarButton.style.display='';
   servicioForm.style.display = 'none';
 });
 	</script>
