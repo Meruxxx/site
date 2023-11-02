@@ -141,6 +141,18 @@ servicioFormElement.addEventListener('submit', function (event) {
   const correoCliente = document.getElementById('correoCliente').value;
   const numeroCelular = document.getElementById('numeroCelular').value;
   const servicio = document.getElementById('servicio').value;
+	// se agregan las lineas para insertar registros en la bd
+	fetch('http://localhost:3000/api/solicituddeservicio', {
+    method: 'POST',
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ nombresApellidos: nombreCliente, email: correoCliente,celular:numeroCelular,tipoServicio:servicio })
+})
+.then(res => res.json())
+.then(res=> {
+      console.log(res);
+});
 
   const servicioInfo = `
   <table class="custom-table">
