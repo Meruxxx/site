@@ -67,10 +67,28 @@
 					  
 						<input type="submit" value="Enviar datos">
 					  </form>
+					  <button id="verdatos" value="Ver Datos" onclick="verDatos()">Ver Datos</button>
 					</div>
 				</div>	
-				<div id="servicioResultado">
-					<!-- Aquí se mostrará el cuento generado -->
+				<div id="servicioResultado"style="display:none">
+					<table class="custom-table">
+						<thead>
+						  <tr>
+							<td scope="row">Nombres y Apellidos</td>
+							<td scope="row">Correo Electrónico</td>
+							<td scope="row">Número de celular</td>
+							<td scope="row">Servicio solicitado</td>
+						  </tr>
+						</thead>
+						<tbody id="contenido">
+						  <tr>
+							<td>${nombreCliente}</td>
+							<td>${correoCliente}</td>
+							<td>${numeroCelular}</td>
+							<td>${servicio}</td>
+							</tr>
+						</tbody>
+					  </table>
 				  </div>
 				  <button type="button" id="cancelar" style="display:none">Cancelar</button>			
 				</div>

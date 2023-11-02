@@ -133,7 +133,8 @@ cancelarButton.addEventListener('click', function () {
 // Agregar un evento submit al formulario de servicio
 const servicioResultado = document.getElementById('servicioResultado');
 const servicioFormElement = document.getElementById('servicioForm');
-
+const contenido = document.getElementById('contenido'); 
+const buttonverdatos = document.getElementById('verdatos');
 servicioFormElement.addEventListener('submit', function (event) {
   event.preventDefault();
   servicioResultado.style.display = '';
@@ -141,39 +142,65 @@ servicioFormElement.addEventListener('submit', function (event) {
   const correoCliente = document.getElementById('correoCliente').value;
   const numeroCelular = document.getElementById('numeroCelular').value;
   const servicio = document.getElementById('servicio').value;
-	// se agregan las lineas para insertar registros en la bd
-	fetch('http://localhost:3000/api/solicituddeservicio', {
-    method: 'POST',
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ nombresApellidos: nombreCliente, email: correoCliente,celular:numeroCelular,tipoServicio:servicio })
-})
-.then(res => res.json())
-.then(res=> {
-      console.log(res);
+	
+// se realiza la solicitud para creacion a la base de datos
+  const data = { nombresApellidos: nombreCliente, email: correoCliente,celular:parseInt(numeroCelular),tipoServicio:servicio };
+	postJSON(data);
+	
+	// solicitud get
+	getJSON()
+// 	
+//   servicioResultado.innerHTML = servicioInfo;
+	cancelarButton.style.display = '';
+   servicioForm.style.display = 'none';
 });
 
-  const servicioInfo = `
-  <table class="custom-table">
-    <tbody>
-      <tr>
-        <td scope="row">Nombres y Apellidos</td>
-		<td scope="row">Correo Electrónico</td>
-		<td scope="row">Número de celular</td>
-		<td scope="row">Servicio solicitado</td>
-      </tr>
-	  <tr>
-		<td>${nombreCliente}</td>
-		<td>${correoCliente}</td>
-		<td>${numeroCelular}</td>
-		<td>${servicio}</td>
+async function postJSON(data) {
+	try {
+	  const response = await fetch("http://localhost:3000/api/solicituddeservicio", {
+		method: "POST", // or 'PUT'
+		headers: {
+		  "Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	  });
+  
+	  const result = await response.json();
+	  console.log("Success:", result);
+	} catch (error) {
+	  console.error("Error:", error);
+	}
+}
+async function getJSON() {
+	try {
+		//const response = await
+		fetch("http://localhost:3000/api/solicituddeservicio").then(res => res.json()).then(datos => {
+			tabla(datos);
+		 });
+
+	//   const result = await response.json();
+	//   console.log("Success:", result);
+	} catch (error) {
+	  console.error("Error:", error);
+	}
+}
+function tabla(datos) {
+	contenido.innerHTML = '';
+	for (let valor of datos) {
+		contenido.innerHTML += `
+		<tr>
+		<td>${valor.nombresApellidos}</td>
+		<td>${valor.email}</td>
+		<td>${valor.celular}</td>
+		<td>${valor.tipoServicio}</td>
 		</tr>
-    </tbody>
-  </table>
-  `;
-
-  servicioResultado.innerHTML = servicioInfo;
-  cancelarButton.style.display='';
-  servicioForm.style.display = 'none';
-});
+		`
+	}
+}
+function verDatos() {
+	servicioResultado.style.display = '';
+	getJSON();
+	cancelarButton.style.display = '';
+	buttonverdatos.style.display = 'none';
+   servicioForm.style.display = 'none';
+  }
