@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = "sqlserver://localhost:1433;database=TiendaOnline;integratedSecurity=true;trustServerCertificate=true;"
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+model SolicitudServicio {
+  id    Int     @id @default(autoincrement())@map("Id")
+  nombresApellidos String? @db.VarChar(100) @map("NombresApellidos")
+  email            String? @db.VarChar(50) @map("Email")
+  celular          Int? @map("Celular")
+  tipoServicio     String? @db.VarChar(50) @map("TipoServicio")
+}
